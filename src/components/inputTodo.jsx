@@ -26,7 +26,7 @@ const InputTodo = () => {
           <input
             type='text'
             className='form-control'
-            style={{ width: 800 }}
+            style={{ width: 600 }}
             placeholder='Add Todo'
             ref={(node) => (node.value = input)}
             onChange={handleChange}
