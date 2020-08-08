@@ -1,8 +1,7 @@
 import React from 'react';
 import InputTodo from './components/inputTodo';
 import TodoList from './components/TodoList';
-import { useDispatch } from 'react-redux';
-import { requestTodo } from './actions/actions';
+
 function App() {
   // const dispatch = useDispatch();
   // dispatch(requestTodo());

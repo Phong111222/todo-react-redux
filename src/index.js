@@ -8,9 +8,7 @@ import { Provider } from 'react-redux';
 import reducer from './reducers/reducer';
 import thunk from 'redux-thunk';
 import { requestTodo } from './actions/actions';
-// import { addTodo } from './actions/actions';
 
-// const store = createStore(reducer, applyMiddleware(thunk));
 const store = configureStore({ reducer: reducer, middleware: [thunk] });
 store.subscribe(() => console.log(store.getState()));
 store.dispatch(requestTodo());
