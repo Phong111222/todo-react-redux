@@ -47,10 +47,11 @@ export const completeTodo = (id) => {
     id,
   };
 };
-export const changeTodo = (id) => {
+export const changeTodo = (id, title) => {
   return {
     type: CHANGE_TODO,
     id,
+    title,
   };
 };
 

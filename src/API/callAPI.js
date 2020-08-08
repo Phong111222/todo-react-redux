@@ -1,5 +1,5 @@
-import axios from "axios";
-const url = "https://jsonplaceholder.typicode.com/todos";
+import axios from 'axios';
+const url = 'https://jsonplaceholder.typicode.com/todos';
 const callAPI = () => {
   return axios.get(url);
 };

@@ -14,35 +14,58 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_TODO: {
-      state.list = action.data;
-      return { ...state };
+      // state.list = action.data;
+      return { ...state, list: [...action.data] };
     }
     case ADD_TODO:
-      if (action.payload.title === '') {
-        return state;
+      if (state.edited) {
+        return {
+          ...state,
+          list: [
+            ...state.list.map((item) =>
+              item.id === state.id
+                ? { ...item, title: action.payload.title }
+                : item
+            ),
+          ],
+          edited: !state.edited,
+        };
       } else {
-        state.list = [...state.list, { ...action.payload }];
-        return { ...state };
+        if (action.payload.title === '') {
+          return state;
+        } else {
+          state.list = [...state.list, { ...action.payload }];
+          return { ...state };
+        }
       }
 
     case REMOVE_TODO:
-      state.list = [...state.list.filter((item) => item.id !== action.id)];
-      return { ...state };
+      return {
+        ...state,
+        list: [...state.list.filter((item) => item.id !== action.id)],
+      };
     case COMPLETE_TODO:
-      state.list = [
-        ...state.list.map((item) =>
-          item.id === action.id ? { ...item, completed: !item.completed } : item
-        ),
-      ];
-      return { ...state };
+      return {
+        ...state,
+        list: [
+          ...state.list.map((item) =>
+            item.id === action.id
+              ? { ...item, completed: !item.completed }
+              : item
+          ),
+        ],
+      };
     case CHANGE_TODO:
-      return [
-        ...state.list.map((item) =>
-          item.id === action.id ? { ...item, edited: !item.edited } : item
-        ),
-      ];
+      return !state.edited
+        ? {
+            ...state,
+            item: action.title,
+            id: action.id,
+            edited: !state.edited,
+          }
+        : { ...state };
     case RESET:
-      return initialState;
+      return { ...initialState };
     default:
       return state;
   }
