@@ -32,7 +32,7 @@ const InputTodo = () => {
           <input
             type='text'
             className='form-control'
-            style={{ width: 600 }}
+            style={{ width: 800 }}
             placeholder='Add Todo'
             value={input}
             onChange={handleChange}

@@ -23,10 +23,10 @@ const TodoItem = ({ props }) => {
       <div>
         <button
           type='button'
-          className='btn btn-success mr-2'
+          className={`btn ${!completed ? 'btn-primary' : 'btn-success'} mr-2`}
           onClick={(e) => handleComplete(e)}
         >
-          Complete
+          {completed ? 'Completed' : 'In Progress'}
         </button>
         <button
           type='button'
