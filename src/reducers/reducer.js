@@ -32,7 +32,7 @@ const reducer = (state = initialState, action) => {
         };
       } else {
         if (action.payload.title === '') {
-          return state;
+          return;
         } else {
           state.list = [...state.list, { ...action.payload }];
           return { ...state };

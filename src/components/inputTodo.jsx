@@ -5,7 +5,7 @@ import { addTodo, reset } from '../actions/actions';
 const InputTodo = () => {
   const dispatch = useDispatch();
   const { item, edited } = useSelector((state) => state);
-  const [input, setInput] = useState(item);
+  const [input, setInput] = useState('');
 
   useEffect(() => {
     if (edited) setInput(item);
@@ -17,6 +17,10 @@ const InputTodo = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!input.length) {
+      alert('EMPTY TODO ');
+      return;
+    }
     dispatch(addTodo(input));
     e.target.reset();
     setInput('');
